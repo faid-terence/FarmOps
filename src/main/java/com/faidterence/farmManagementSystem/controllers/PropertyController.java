@@ -42,4 +42,10 @@ public class PropertyController {
         return propertyService.getAllProperties();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Property> getPropertyById(@PathVariable Long id) {
+        Property property = propertyService.getPropertyById(id);
+        return new ResponseEntity<>(property, HttpStatus.OK);
+    }
+
 }
