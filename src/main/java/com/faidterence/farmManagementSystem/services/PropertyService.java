@@ -6,6 +6,8 @@ import com.faidterence.farmManagementSystem.schema.Property;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @AllArgsConstructor
@@ -34,5 +36,9 @@ public class PropertyService {
         property.setDate(createPropertyDTO.getDate());
         return propertyRepository.save(property);
 
+    }
+
+    public List<Property> getAllProperties() {
+        return propertyRepository.findAll();
     }
 }
