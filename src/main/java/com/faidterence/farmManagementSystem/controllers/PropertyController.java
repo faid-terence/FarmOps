@@ -54,4 +54,23 @@ public class PropertyController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CreatePropertyDTO> updateProperty(@PathVariable Long id, @RequestBody CreatePropertyDTO createPropertyDTO) {
+        Property updatedProperty = propertyService.updateProperty(id, createPropertyDTO);
+
+        CreatePropertyDTO responseDto = new CreatePropertyDTO();
+        responseDto.setName(updatedProperty.getName());
+        responseDto.setLocation(updatedProperty.getLocation());
+        responseDto.setDescription(updatedProperty.getDescription());
+        responseDto.setCategory(updatedProperty.getCategory());
+        responseDto.setStatus(updatedProperty.getStatus());
+        responseDto.setPrice(updatedProperty.getPrice());
+        responseDto.setQuantity(updatedProperty.getQuantity());
+        responseDto.setOwner(updatedProperty.getOwner());
+        responseDto.setContact(updatedProperty.getContact());
+        responseDto.setDate(updatedProperty.getDate());
+
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
 }
