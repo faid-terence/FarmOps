@@ -45,4 +45,10 @@ public class PropertyService {
     public Property getPropertyById(Long id) {
         return propertyRepository.findById(id).orElseThrow(() -> new RuntimeException("Property not found"));
     }
+
+    public void deleteProperty(Long id) {
+        long propertyId = id;
+        Property existingProperty = propertyRepository.findById(propertyId).orElseThrow(() -> new RuntimeException("Property not found"));
+        propertyRepository.delete(existingProperty);
+    }
 }
