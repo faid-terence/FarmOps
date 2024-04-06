@@ -51,4 +51,20 @@ public class PropertyService {
         Property existingProperty = propertyRepository.findById(propertyId).orElseThrow(() -> new RuntimeException("Property not found"));
         propertyRepository.delete(existingProperty);
     }
+
+    public Property updateProperty(Long id, CreatePropertyDTO createPropertyDTO) {
+        long propertyId = id;
+        Property existingProperty = propertyRepository.findById(propertyId).orElseThrow(() -> new RuntimeException("Property not found"));
+        existingProperty.setName(createPropertyDTO.getName());
+        existingProperty.setLocation(createPropertyDTO.getLocation());
+        existingProperty.setDescription(createPropertyDTO.getDescription());
+        existingProperty.setCategory(createPropertyDTO.getCategory());
+        existingProperty.setStatus(createPropertyDTO.getStatus());
+        existingProperty.setPrice(createPropertyDTO.getPrice());
+        existingProperty.setQuantity(createPropertyDTO.getQuantity());
+        existingProperty.setOwner(createPropertyDTO.getOwner());
+        existingProperty.setContact(createPropertyDTO.getContact());
+        existingProperty.setDate(createPropertyDTO.getDate());
+        return propertyRepository.save(existingProperty);
+    }
 }
